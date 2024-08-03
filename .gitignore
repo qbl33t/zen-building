@@ -9,7 +9,7 @@
 # Personal gitignore 
 .idea
 .vscode
-/Assets/Tools
+/Assets/Thirdparty
 /Packages
 
 # ================================================

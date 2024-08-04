@@ -1,10 +1,13 @@
 using System;
 using EventLogic;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace GameEngine {
 	public class GameEngine : MonoBehaviour {
+		[SerializeField] private CinemachineCamera cinemachineCamera;
+
 		[Header("Logic")]
 		[SerializeField] public GameObject cubeSpawner;
 
@@ -27,8 +30,12 @@ namespace GameEngine {
 		//
 		// Listen Events
 		//
-		public void OnNewCubeSpawned() {
-			Debug.Log("Hey, new cube was spawned! Do something!");
+		public void OnNewCubeSpawned(Component sender, object data) {
+			Debug.Log("[GameEngine][OnNewCubeSpawned]: " + data);
+			if (data is Transform newTarget) {
+				cinemachineCamera.Follow = newTarget;
+				cinemachineCamera.LookAt = newTarget;
+			}
 		}
 	}
 }

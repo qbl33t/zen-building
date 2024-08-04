@@ -64,16 +64,14 @@ namespace Logic {
 		//
 		public void OnGameEventRaised(Component sender, object data) {
 			if (data is string) {
-				Debug.Log("CubeDetector received the event: " + data);
-
 				// Time to spawn some cube - shall we?
 				var newCube = Instantiate(prefabCube, _newCube.transform.position, Quaternion.identity);
 
-				// move above the spawned cube
-				transform.position = newCube.transform.position - Vector3.down * 0.5f;
+				// move to new cube
+				transform.position = newCube.transform.position;
 
 				// raise event to notify others
-				newCubeSpawned.Raise(this, _ghostCube);
+				newCubeSpawned.Raise(this, newCube.transform);
 			}
 		}
 	}

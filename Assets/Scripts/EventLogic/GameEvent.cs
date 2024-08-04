@@ -4,7 +4,7 @@ using UnityEngine;
 namespace EventLogic {
 	[CreateAssetMenu(menuName = "Game Events/GameEvent")]
 	public class GameEvent : ScriptableObject {
-		private readonly HashSet<GameEventListener> _listeners = new HashSet<GameEventListener>();
+		private readonly HashSet<GameEventListener> _listeners = new();
 
 		public void Raise(Component sender, object data) {
 			foreach (GameEventListener eventListener in _listeners) {

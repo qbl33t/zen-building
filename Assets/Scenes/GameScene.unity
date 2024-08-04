@@ -737,6 +737,7 @@ GameObject:
   m_Component:
   - component: {fileID: 837781318}
   - component: {fileID: 837781319}
+  - component: {fileID: 837781320}
   m_Layer: 0
   m_Name: GameEngine
   m_TagString: Untagged
@@ -772,7 +773,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubeSpawner: {fileID: 448219958}
-  gameEvent: {fileID: 11400000, guid: a6cc2f3eb10d146faa71173e4ba9f26c, type: 2}
+  keyDownSpace: {fileID: 11400000, guid: a6cc2f3eb10d146faa71173e4ba9f26c, type: 2}
+--- !u!114 &837781320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837781317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d349dd5695fe94758824b57485306627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: efd37eabfae7449a99112b17cd6a4997, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 837781319}
+        m_TargetAssemblyTypeName: GameEngine.GameEngine, Assembly-CSharp
+        m_MethodName: OnNewCubeSpawned
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1104925143
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -913,6 +942,14 @@ PrefabInstance:
       propertyPath: prefabCube
       value: 
       objectReference: {fileID: 1435506281255356694, guid: 8944d5591add0491fa0958f2c4e80cf5, type: 3}
+    - target: {fileID: 638487287573715261, guid: 5aca21751b1fd47f297d71e3310d7bcb, type: 3}
+      propertyPath: newCubeSpawned
+      value: 
+      objectReference: {fileID: 11400000, guid: efd37eabfae7449a99112b17cd6a4997, type: 2}
+    - target: {fileID: 638487287573715261, guid: 5aca21751b1fd47f297d71e3310d7bcb, type: 3}
+      propertyPath: prefabGhostCube
+      value: 
+      objectReference: {fileID: 5085500406963586838, guid: 442d7edc28e9d4541be4c225f700c363, type: 3}
     - target: {fileID: 679851504788270646, guid: 5aca21751b1fd47f297d71e3310d7bcb, type: 3}
       propertyPath: m_Name
       value: CubeDetector
@@ -927,7 +964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5439471912315674393, guid: 5aca21751b1fd47f297d71e3310d7bcb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.93
+      value: -2.15
       objectReference: {fileID: 0}
     - target: {fileID: 5439471912315674393, guid: 5aca21751b1fd47f297d71e3310d7bcb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -935,7 +972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5439471912315674393, guid: 5aca21751b1fd47f297d71e3310d7bcb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.11
+      value: -1.57
       objectReference: {fileID: 0}
     - target: {fileID: 5439471912315674393, guid: 5aca21751b1fd47f297d71e3310d7bcb, type: 3}
       propertyPath: m_LocalRotation.w

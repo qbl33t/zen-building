@@ -1,14 +1,15 @@
 using System;
 using EventLogic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GameEngine {
 	public class GameEngine : MonoBehaviour {
 		[Header("Logic")]
 		[SerializeField] public GameObject cubeSpawner;
 
-		[Header("Events")]
-		public GameEvent gameEvent;
+		[Header("Raise Events")]
+		public GameEvent keyDownSpace;
 
 		private void OnEnable() {
 		}
@@ -19,8 +20,15 @@ namespace GameEngine {
 		private void Update() {
 			if (Input.GetKeyDown(KeyCode.Space)) {
 				Debug.Log("Space was pressed!");
-				gameEvent.Raise(this, "Just letting you know, that Space was pressed!");
+				keyDownSpace.Raise(this, "Just letting you know, that Space was pressed!");
 			}
+		}
+
+		//
+		// Listen Events
+		//
+		public void OnNewCubeSpawned() {
+			Debug.Log("Hey, new cube was spawned! Do something!");
 		}
 	}
 }

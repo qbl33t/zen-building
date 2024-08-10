@@ -9,7 +9,7 @@ namespace Collisions {
 	public class CubeCollision : MonoBehaviour {
 		public Material materialCollision;
 
-		public bool IsColliding { get; set; }
+		public bool IsColliding { get; private set; }
 
 		private Material _material;
 		private MeshRenderer _meshRender;
@@ -21,7 +21,15 @@ namespace Collisions {
 
 		private void OnTriggerEnter(Collider other) {
 			if (other.CompareTag("Cube")) {
-				Debug.Log("Collision ENTER");
+				// Debug.Log("Collision ENTER");
+				IsColliding = true;
+
+				_meshRender.material = materialCollision;
+			}
+		}
+
+		private void OnTriggerStay(Collider other) {
+			if (other.CompareTag("Cube")) {
 				IsColliding = true;
 
 				_meshRender.material = materialCollision;
@@ -30,7 +38,7 @@ namespace Collisions {
 
 		private void OnTriggerExit(Collider other) {
 			if (other.CompareTag("Cube")) {
-				Debug.Log("Collision EXIT");
+				// Debug.Log("Collision EXIT");
 				IsColliding = false;
 
 				_meshRender.material = _material;

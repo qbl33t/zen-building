@@ -19,7 +19,7 @@ namespace EventLogic {
 			gameEvent.UnregisterListener(this);
 		}
 
-		public void OnEventRaised(Component sender, object data) {
+		public void OnEventEmitted(Component sender, object data) {
 			response.Invoke(sender, data);
 		}
 	}

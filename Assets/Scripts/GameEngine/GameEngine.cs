@@ -14,6 +14,8 @@ namespace GameEngine {
 		[Header("Raise Events")]
 		public GameEvent keyDownSpace;
 
+		private int _cubeSpawned = 0;
+
 		private void OnEnable() {
 		}
 
@@ -23,7 +25,7 @@ namespace GameEngine {
 		private void Update() {
 			if (Input.GetKeyDown(KeyCode.Space)) {
 				Debug.Log("Space was pressed!");
-				keyDownSpace.Raise(this, "Just letting you know, that Space was pressed!");
+				keyDownSpace.EmitEvent(this, "Just letting you know, that Space was pressed!");
 			}
 		}
 
@@ -32,6 +34,9 @@ namespace GameEngine {
 		//
 		public void OnNewCubeSpawned(Component sender, object data) {
 			Debug.Log("[GameEngine][OnNewCubeSpawned]: " + data);
+
+			_cubeSpawned += 1;
+
 			if (data is Transform newTarget) {
 				cinemachineCamera.Follow = newTarget;
 				cinemachineCamera.LookAt = newTarget;

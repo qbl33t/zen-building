@@ -6,9 +6,9 @@ namespace EventLogic {
 	public class GameEvent : ScriptableObject {
 		private readonly HashSet<GameEventListener> _listeners = new();
 
-		public void Raise(Component sender, object data) {
+		public void EmitEvent(Component sender, object data) {
 			foreach (GameEventListener eventListener in _listeners) {
-				eventListener.OnEventRaised(sender, data);
+				eventListener.OnEventEmitted(sender, data);
 			}
 		}
 

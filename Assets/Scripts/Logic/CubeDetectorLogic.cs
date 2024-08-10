@@ -27,13 +27,9 @@ namespace Logic {
 			}
 		}
 
-		// Start is called once before the first execution of Update after the MonoBehaviour is created
 		private void Start() {
+			// Invoke coroutine
 			InvokeRepeating(nameof(SpawningGhostBlock), 0, speedSpawn);
-		}
-
-		// Update is called once per frame
-		private void Update() {
 		}
 
 		//
@@ -71,7 +67,7 @@ namespace Logic {
 				transform.position = newCube.transform.position;
 
 				// raise event to notify others
-				newCubeSpawned.Raise(this, newCube.transform);
+				newCubeSpawned.EmitEvent(this, newCube.transform);
 			}
 		}
 	}

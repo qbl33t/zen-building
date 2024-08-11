@@ -4,12 +4,12 @@ using UnityEngine.Events;
 
 namespace EventLogic {
 	[Serializable]
-	public class CustomGameEvent : UnityEvent<Component, object> {
+	public class GenericGameEvent : UnityEvent<Component, object> {
 	}
 
 	public class GameEventListener : MonoBehaviour {
 		public GameEvent gameEvent;
-		public CustomGameEvent response;
+		public GenericGameEvent response;
 
 		private void OnEnable() {
 			gameEvent.RegisterListener(this);

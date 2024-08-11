@@ -1,4 +1,5 @@
 using System;
+using Data.Structure;
 using MoreMountains.Tools;
 using UnityEngine;
 
@@ -10,13 +11,15 @@ namespace UI {
 
 		private MMProgressBar _progressBar;
 
-		private void Start() {
+		private void Awake() {
 			_progressBar = GetComponent<MMProgressBar>();
 		}
 
-		public void OnNewCubeSpawned(Component sender, object data) {
-			Debug.Log("[UI] UpdateProgressBar: received Event [NewCubeSpawned]");
-			_progressBar.UpdateBar(1, 1, 10);
+		public void OnEventReachedHeight(Component sender, object data) {
+			if (data is ReachedHeight reachedHeight) {
+				Debug.Log("[UI] UpdateProgressBar: received Event [NewCubeSpawned]");
+				_progressBar.UpdateBar(reachedHeight.Height, 0, reachedHeight.MaxHeight);
+			}
 		}
 	}
 }

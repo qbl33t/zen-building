@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4728554662049246002}
   - component: {fileID: -2330187570184594041}
   - component: {fileID: -5866453320835228472}
+  - component: {fileID: -5558144681207213985}
   m_Layer: 0
   m_Name: CubeCollision
   m_TagString: Cube
@@ -136,7 +137,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &-5866453320835228472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,3 +151,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materialCollision: {fileID: 2100000, guid: d76d5dba59c8a824a8170635648a356c, type: 2}
+--- !u!114 &-5558144681207213985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884546985359194349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d349dd5695fe94758824b57485306627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: efd37eabfae7449a99112b17cd6a4997, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -5866453320835228472}
+        m_TargetAssemblyTypeName: Collisions.CubeCollision, Assembly-CSharp
+        m_MethodName: OnEventNewCubeSpawned
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

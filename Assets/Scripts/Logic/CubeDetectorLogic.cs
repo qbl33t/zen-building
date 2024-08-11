@@ -11,9 +11,9 @@ namespace Logic {
 	public class CubeDetectorLogic : MonoBehaviour {
 		[SerializeField] private GameObject prefabCube;
 		[SerializeField] private GameObject prefabGhostCube;
-		[SerializeField] private GameEvent newCubeSpawned;
+		[SerializeField] private GameEvent eventNewCubeSpawned;
 
-		[SerializeField] private float speedSpawn = 0.5f;
+		[SerializeField] private float speedSpawn = 0.7f;
 
 		private readonly List<CubeCollision> _childObjects = new List<CubeCollision>();
 		private static Random _rnd = new Random();
@@ -58,17 +58,15 @@ namespace Logic {
 		//
 		// Events
 		//
-		public void OnGameEventRaised(Component sender, object data) {
-			if (data is string) {
-				// Time to spawn some cube - shall we?
-				var newCube = Instantiate(prefabCube, _newCube.transform.position, Quaternion.identity);
+		public void OnEventNewCubeSpawn(Component sender, object data) {
+			// Time to spawn some cube - shall we?
+			var newCube = Instantiate(prefabCube, _newCube.transform.position, Quaternion.identity);
 
-				// move to new cube
-				transform.position = newCube.transform.position;
+			// move to new cube
+			transform.position = newCube.transform.position;
 
-				// raise event to notify others
-				newCubeSpawned.EmitEvent(this, newCube.transform);
-			}
+			// raise event to notify others
+			eventNewCubeSpawned.EmitEvent(this, newCube);
 		}
 	}
 }

@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabCube: {fileID: 1435506281255356694, guid: 8944d5591add0491fa0958f2c4e80cf5, type: 3}
   prefabGhostCube: {fileID: 5085500406963586838, guid: 442d7edc28e9d4541be4c225f700c363, type: 3}
-  newCubeSpawned: {fileID: 11400000, guid: efd37eabfae7449a99112b17cd6a4997, type: 2}
+  eventNewCubeSpawned: {fileID: 11400000, guid: efd37eabfae7449a99112b17cd6a4997, type: 2}
   speedSpawn: 0.5
 --- !u!114 &8800943922963481473
 MonoBehaviour:
@@ -72,7 +72,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5265916196870723163}
         m_TargetAssemblyTypeName: Logic.CubeDetectorLogic, Assembly-CSharp
-        m_MethodName: OnGameEventRaised
+        m_MethodName: OnEventNewCubeSpawn
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

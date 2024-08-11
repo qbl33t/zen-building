@@ -19,6 +19,21 @@ namespace Collisions {
 			_meshRender = GetComponent<MeshRenderer>();
 		}
 
+		//
+		// Events
+		//
+
+		//
+		// Events - Game
+		//
+		public void OnEventNewCubeSpawned(Component sender, object data) {
+			IsColliding = false;
+		}
+
+		//
+		// Events - Unity
+		//
+
 		private void OnTriggerEnter(Collider other) {
 			if (other.CompareTag("Cube")) {
 				// Debug.Log("Collision ENTER");

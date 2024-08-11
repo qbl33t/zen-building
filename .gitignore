@@ -10,6 +10,9 @@
 .idea
 .vscode
 /Assets/Thirdparty
+/Assets/Feel
+/Assets/UI Toolkit
+/Assets/TextMesh Pro
 /Packages
 
 # ================================================

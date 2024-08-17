@@ -15,10 +15,10 @@ namespace UI {
 			_progressBar = GetComponent<MMProgressBar>();
 		}
 
-		public void OnEventReachedHeight(Component sender, object data) {
-			if (data is ReachedHeight reachedHeight) {
-				Debug.Log("[UI] UpdateProgressBar: received Event [NewCubeSpawned]");
-				_progressBar.UpdateBar(reachedHeight.Height, 0, reachedHeight.MaxHeight);
+		public void OnEventGameState(Component sender, object data) {
+			if (data is GameState gameState) {
+				// Debug.Log("[UI] UpdateProgressBar: received Event [NewCubeSpawned]");
+				_progressBar.UpdateBar(gameState.ReachedHeight, 0, gameState.MaxHeight);
 			}
 		}
 	}

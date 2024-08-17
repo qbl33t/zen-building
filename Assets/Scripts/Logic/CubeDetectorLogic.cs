@@ -11,14 +11,17 @@ namespace Logic {
 	public class CubeDetectorLogic : MonoBehaviour {
 		[SerializeField] private GameObject prefabCube;
 		[SerializeField] private GameObject prefabGhostCube;
+		[SerializeField] private GameObject startingCube;
+
 		[SerializeField] private GameEvent eventNewCubeSpawned;
 
 		[SerializeField] private float speedSpawn = 0.7f;
 
 		private readonly List<CubeCollision> _childObjects = new List<CubeCollision>();
-		private static Random _rnd = new Random();
+		private static Random _rnd = new();
 		private CubeCollision _newCube;
 		private GameObject _ghostCube;
+		private bool _spawningGhostCubes = false;
 
 		private void OnEnable() {
 			// get all objects for collision
@@ -28,8 +31,24 @@ namespace Logic {
 		}
 
 		private void Start() {
-			// Invoke coroutine
-			InvokeRepeating(nameof(SpawningGhostBlock), 0, speedSpawn);
+			ProceedRestartGame();
+		}
+
+		private void ProceedRestartGame() {
+			// 
+			transform.position = startingCube.transform.position;
+
+			// TODO: this is dummy :P
+			if (!_spawningGhostCubes) {
+				// Invoke coroutine
+				InvokeRepeating(nameof(SpawningGhostBlock), 0, speedSpawn);
+				_spawningGhostCubes = true;
+			} else {
+				StopCoroutine(nameof(SpawningGhostBlock));
+
+				// adjust to new game state
+				InvokeRepeating(nameof(SpawningGhostBlock), 0, speedSpawn);
+			}
 		}
 
 		//
@@ -54,11 +73,12 @@ namespace Logic {
 			}
 		}
 
-
 		//
-		// Events
+		// Received Events
 		//
 		public void OnEventNewCubeSpawn(Component sender, object data) {
+			// Debug.Log("CubeDetectorLogic::OnEventNewCubeSpawn");
+
 			// Time to spawn some cube - shall we?
 			var newCube = Instantiate(prefabCube, _newCube.transform.position, Quaternion.identity);
 
@@ -67,6 +87,10 @@ namespace Logic {
 
 			// raise event to notify others
 			eventNewCubeSpawned.EmitEvent(this, newCube);
+		}
+
+		public void OnEventGameRestart(Component sender, object data) {
+			ProceedRestartGame();
 		}
 	}
 }

@@ -6,6 +6,7 @@ using EventLogic;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Utils;
 using VHierarchy.Libs;
 
 namespace GameEngine {
@@ -52,31 +53,34 @@ namespace GameEngine {
 		private void Update() {
 			if (Input.GetKeyDown(KeyCode.Space)) {
 				eventSpawnCube.EmitEvent(this, null);
-			} else if (Input.GetKeyDown(KeyCode.R)) {
-				ProceedRestartLevel();
 			}
+			// else if (Input.GetKeyDown(KeyCode.R)) {
+			// 	ProceedRestartLevel();
+			// }
 		}
 
 		private void ProceedNextLevel() {
-			Debug.Log("[GameEngine] ProceedNextLevel");
 			// calculate GameState for next level
 			_gameState = GameStateLogic.NextGameState(_gameState);
 
-			Debug.Log("[GameEngine] Emitting event GameNextLevel");
-			eventGameNextLevel.EmitEvent(this, _gameState);
 			ResetScene();
+
+			Logg.Me($"new state: {_gameState}");
+			eventGameNextLevel.EmitEvent(this, _gameState);
 		}
 
 		private void ProceedRestartLevel() {
-			// reset game state just by reached height
-			_gameState.ReachedHeight = 1;
-			eventGameRestart.EmitEvent(this, _gameState);
+			// reset GameState -> just by changing reached height
 			ResetScene();
+
+			Logg.Me($"new state: {_gameState}");
+			eventGameRestart.EmitEvent(this, _gameState);
 		}
 
 		private void ResetScene() {
-			// init transition for the next level
-			// 0. play transition between levels
+			// TODO: init transition to "new state" of the game 
+
+			_gameState.ReachedHeight = 1;
 
 			// 1. destroy all cubes + spawn first one (this could stay)
 			_cubeTower.ForEach(cube => cube.Destroy());
@@ -89,6 +93,14 @@ namespace GameEngine {
 		//
 		// Events
 		//
+		public void OnEventTowerFellDown(Component sender, object data) {
+			if (data is GameObject gameObject) {
+				// TODO: now gameObject isn't needed but maybe in the future some nice effect/slow mo? :)
+				// or just particle system!
+				ProceedRestartLevel();
+			}
+		}
+
 		public void OnEventNewCube(Component sender, object data) {
 			if (data is GameObject newCubeGameObject) {
 				_cubeTower.Add(newCubeGameObject);
@@ -124,6 +136,7 @@ namespace GameEngine {
 					ProceedNextLevel();
 				} else {
 					// emit event
+					Logg.Me($"new state: {_gameState}");
 					eventGameUpdate.EmitEvent(this, _gameState);
 				}
 			}

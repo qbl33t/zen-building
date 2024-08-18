@@ -2,26 +2,36 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using EventLogic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Utils;
 
 namespace Collisions {
 	public class CubeCollision : MonoBehaviour {
-		public Material materialCollision;
+		[SerializeField] public Material materialCollision;
 
-		public bool IsColliding { get; private set; }
+		[Header("Events 2 Send")]
+		[SerializeField] public GameEvent eventTowerFellDown;
 
+		private bool _isColliding;
 		private Material _material;
 		private MeshRenderer _meshRender;
+		private GameObject _cube;
 
-		private void Start() {
+		private void Awake() {
 			_material = GetComponent<Renderer>().materials[0];
 			_meshRender = GetComponent<MeshRenderer>();
+			_cube = GetComponent<GameObject>();
 		}
 
-		//
-		// Events
-		//
+		private void Update() {
+			if (Input.GetKeyDown(KeyCode.R)) {
+				Logg.Me("Collision cube update -> Tower Fell Down");
+				IsColliding = false;
+				eventTowerFellDown.EmitEvent(this, _cube);
+			}
+		}
 
 		//
 		// Events - Game
@@ -57,6 +67,17 @@ namespace Collisions {
 				IsColliding = false;
 
 				_meshRender.material = _material;
+			}
+		}
+
+		//
+		// Private helper
+		//
+		public bool IsColliding {
+			get => _isColliding;
+			private set {
+				_isColliding = value;
+				_meshRender.material = value ? materialCollision : _material;
 			}
 		}
 	}

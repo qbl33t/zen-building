@@ -7,6 +7,7 @@ using EventLogic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Utils;
 using Random = System.Random;
 
 namespace Logic {
@@ -39,6 +40,10 @@ namespace Logic {
 		public void OnEventSpawnCube(Component sender, object data) {
 			// Debug.Log("CubeDetectorLogic::OnEventNewCubeSpawn");
 
+			if (_ghostCube != null) {
+				Destroy(_ghostCube);
+			}
+
 			// Time to spawn some cube - shall we?
 			var newCube = Instantiate(prefabCube, _newCube.transform.position, Quaternion.identity);
 
@@ -50,6 +55,7 @@ namespace Logic {
 		}
 
 		public void OnEventGameRestart(Component sender, object data) {
+			// Logg.Me($"game state data: {data}");
 			if (data is GameState state) {
 				ProceedRestartGame(state);
 			}
@@ -85,7 +91,7 @@ namespace Logic {
 		// Private helpers
 		//
 		private void ProceedRestartGame(GameState gameState) {
-			Debug.Log("[GhostCubeMachine] Restarting scene");
+			// Debug.Log("[GhostCubeMachine] Restarting scene");
 			_gameState = gameState;
 			// move to starting cube
 			transform.position = _gameState.FirstCube.transform.position;

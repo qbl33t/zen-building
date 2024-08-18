@@ -25,5 +25,10 @@ namespace Data.Structure {
 			ReachedHeight = reachedHeight;
 			FirstCube = null;
 		}
+
+		public override string ToString() {
+			return
+				$"Level: {CurrentLevel}, MaxHeight: {MaxHeight}, Speed: {Speed}, CubeMass: {CubeMass}, ReachedHeight: {ReachedHeight}";
+		}
 	}
 }

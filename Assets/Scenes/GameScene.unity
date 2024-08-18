@@ -691,6 +691,7 @@ GameObject:
   - component: {fileID: 837781318}
   - component: {fileID: 837781319}
   - component: {fileID: 837781320}
+  - component: {fileID: 837781321}
   m_Layer: 0
   m_Name: GameEngine
   m_TagString: Untagged
@@ -751,6 +752,34 @@ MonoBehaviour:
       - m_Target: {fileID: 837781319}
         m_TargetAssemblyTypeName: GameEngine.GameEngine, Assembly-CSharp
         m_MethodName: OnEventNewCube
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &837781321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837781317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d349dd5695fe94758824b57485306627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 14f6b2a873f4f4405958f27bddf64919, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 837781319}
+        m_TargetAssemblyTypeName: GameEngine.GameEngine, Assembly-CSharp
+        m_MethodName: OnEventTowerFellDown
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -969,6 +998,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1496644827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496644819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d349dd5695fe94758824b57485306627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 59029a4b33b58435aa31270e1125fc82, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1496644822}
+        m_TargetAssemblyTypeName: UI.ProgressBarController, Assembly-CSharp
+        m_MethodName: OnEventGameRestart
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1623155014
 GameObject:
   m_ObjectHideFlags: 0
@@ -1060,8 +1117,9 @@ GameObject:
   - component: {fileID: 1624199114}
   - component: {fileID: 1624199116}
   - component: {fileID: 1624199117}
-  - component: {fileID: 1624199118}
   - component: {fileID: 1624199119}
+  - component: {fileID: 1624199120}
+  - component: {fileID: 1624199118}
   m_Layer: 0
   m_Name: Statistics
   m_TagString: Untagged
@@ -1283,6 +1341,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1624199120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624199112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d349dd5695fe94758824b57485306627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 59029a4b33b58435aa31270e1125fc82, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1624199116}
+        m_TargetAssemblyTypeName: UI.StatisticsController, Assembly-CSharp
+        m_MethodName: OnEventGameRestart
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1675997342 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1395825571184578543, guid: fdbc521dddbf44e96945d773e21c0e89, type: 3}
@@ -1340,6 +1426,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 3bce1098b40e34ebeaca3da00f019293, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1675997344}
+        m_TargetAssemblyTypeName: Logic.GhostCubeMachine, Assembly-CSharp
+        m_MethodName: OnEventGameRestart
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1675997349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675997342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d349dd5695fe94758824b57485306627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 59029a4b33b58435aa31270e1125fc82, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1817,6 +1931,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1395825571184578543, guid: fdbc521dddbf44e96945d773e21c0e89, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1675997345}
+    - targetCorrespondingSourceObject: {fileID: 1395825571184578543, guid: fdbc521dddbf44e96945d773e21c0e89, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1675997349}
   m_SourcePrefab: {fileID: 100100000, guid: fdbc521dddbf44e96945d773e21c0e89, type: 3}
 --- !u!1 &1985599581
 GameObject:
@@ -1970,10 +2087,13 @@ PrefabInstance:
       addedObject: {fileID: 1496644825}
     - targetCorrespondingSourceObject: {fileID: 8284464032309556264, guid: 812def50e4e774595825c0099f42aa64, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1496644824}
+      addedObject: {fileID: 1496644821}
     - targetCorrespondingSourceObject: {fileID: 8284464032309556264, guid: 812def50e4e774595825c0099f42aa64, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1496644821}
+      addedObject: {fileID: 1496644827}
+    - targetCorrespondingSourceObject: {fileID: 8284464032309556264, guid: 812def50e4e774595825c0099f42aa64, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1496644824}
   m_SourcePrefab: {fileID: 100100000, guid: 812def50e4e774595825c0099f42aa64, type: 3}
 --- !u!1001 &5110273161469798351
 PrefabInstance:

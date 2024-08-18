@@ -1,7 +1,7 @@
 using Data.Structure;
 
 namespace GameEngine {
-	public class GameStateLogic {
+	public static class GameStateLogic {
 		public static GameState NextGameState(GameState gameState) {
 			// TODO: here should be passed some modifiers for calculation of the next level
 			var nextGameState = gameState;

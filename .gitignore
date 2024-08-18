@@ -9,12 +9,16 @@
 # Personal gitignore 
 .idea
 .vscode
-/Assets/Thirdparty
-/Assets/Feel
-/Assets/UI Toolkit
-/Assets/TextMesh Pro
-/UIElementsSchema
 /Packages
+/Assets/Feel
+/Assets/Feel.meta
+/Assets/TextMesh Pro/
+/Assets/TextMesh Pro.meta
+/Assets/Thirdparty
+/Assets/Thirdparty.meta
+/Assets/UI Toolkit
+/Assets/UI Toolkit.meta
+/UIElementsSchema
 
 # ================================================
 # Follows default Unity gitignore 

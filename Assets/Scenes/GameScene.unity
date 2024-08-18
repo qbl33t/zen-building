@@ -726,9 +726,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cinemachineCamera: {fileID: 1711800687}
-  eventKeyDownSpace: {fileID: 11400000, guid: a6cc2f3eb10d146faa71173e4ba9f26c, type: 2}
-  eventGameState: {fileID: 11400000, guid: ee5cdbeddd20945db8777d40eca2bcf4, type: 2}
+  cubeStart: {fileID: 776854052}
+  eventSpawnCube: {fileID: 11400000, guid: a6cc2f3eb10d146faa71173e4ba9f26c, type: 2}
+  eventGameStart: {fileID: 11400000, guid: 3bce1098b40e34ebeaca3da00f019293, type: 2}
+  eventGameUpdate: {fileID: 11400000, guid: c9951651675ce44bca2f3cad03ff5a66, type: 2}
   eventGameRestart: {fileID: 11400000, guid: 6f80588a897254e839a2603885d3036e, type: 2}
+  eventGameNextLevel: {fileID: 11400000, guid: 59029a4b33b58435aa31270e1125fc82, type: 2}
 --- !u!114 &837781320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -747,7 +750,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 837781319}
         m_TargetAssemblyTypeName: GameEngine.GameEngine, Assembly-CSharp
-        m_MethodName: OnEventNewCubeSpawn
+        m_MethodName: OnEventNewCube
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -881,13 +884,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d349dd5695fe94758824b57485306627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: ee5cdbeddd20945db8777d40eca2bcf4, type: 2}
+  gameEvent: {fileID: 11400000, guid: 6f80588a897254e839a2603885d3036e, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1496644822}
         m_TargetAssemblyTypeName: UI.ProgressBarController, Assembly-CSharp
-        m_MethodName: OnEventGameState
+        m_MethodName: OnEventGameRestart
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -910,6 +913,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressBar: {fileID: 1496644819}
+--- !u!114 &1496644824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496644819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d349dd5695fe94758824b57485306627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: c9951651675ce44bca2f3cad03ff5a66, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1496644822}
+        m_TargetAssemblyTypeName: UI.ProgressBarController, Assembly-CSharp
+        m_MethodName: OnEventGameUpdate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1496644825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496644819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d349dd5695fe94758824b57485306627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 3bce1098b40e34ebeaca3da00f019293, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1496644822}
+        m_TargetAssemblyTypeName: UI.ProgressBarController, Assembly-CSharp
+        m_MethodName: OnEventGameRestart
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1623155014
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,8 +1058,10 @@ GameObject:
   - component: {fileID: 1624199113}
   - component: {fileID: 1624199115}
   - component: {fileID: 1624199114}
-  - component: {fileID: 1624199117}
   - component: {fileID: 1624199116}
+  - component: {fileID: 1624199117}
+  - component: {fileID: 1624199118}
+  - component: {fileID: 1624199119}
   m_Layer: 0
   m_Name: Statistics
   m_TagString: Untagged
@@ -1150,13 +1211,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d349dd5695fe94758824b57485306627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: ee5cdbeddd20945db8777d40eca2bcf4, type: 2}
+  gameEvent: {fileID: 11400000, guid: 3bce1098b40e34ebeaca3da00f019293, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1624199116}
         m_TargetAssemblyTypeName: UI.StatisticsController, Assembly-CSharp
-        m_MethodName: OnEventGameState
+        m_MethodName: OnEventGameStart
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1624199118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624199112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d349dd5695fe94758824b57485306627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: c9951651675ce44bca2f3cad03ff5a66, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1624199116}
+        m_TargetAssemblyTypeName: UI.StatisticsController, Assembly-CSharp
+        m_MethodName: OnEventGameUpdate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1624199119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624199112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d349dd5695fe94758824b57485306627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 6f80588a897254e839a2603885d3036e, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1624199116}
+        m_TargetAssemblyTypeName: UI.StatisticsController, Assembly-CSharp
+        m_MethodName: OnEventGameRestart
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1199,7 +1316,35 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1675997344}
-        m_TargetAssemblyTypeName: Logic.CubeDetectorLogic, Assembly-CSharp
+        m_TargetAssemblyTypeName: Logic.GhostCubeMachine, Assembly-CSharp
+        m_MethodName: OnEventGameRestart
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1675997347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675997342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d349dd5695fe94758824b57485306627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 3bce1098b40e34ebeaca3da00f019293, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1675997344}
+        m_TargetAssemblyTypeName: Logic.GhostCubeMachine, Assembly-CSharp
         m_MethodName: OnEventGameRestart
         m_Mode: 0
         m_Arguments:
@@ -1616,7 +1761,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1395825571184578543, guid: fdbc521dddbf44e96945d773e21c0e89, type: 3}
       propertyPath: m_Name
-      value: CubeDetector
+      value: GhostCubeMachine
       objectReference: {fileID: 0}
     - target: {fileID: 5265916196870723163, guid: fdbc521dddbf44e96945d773e21c0e89, type: 3}
       propertyPath: startingCube
@@ -1666,6 +1811,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1395825571184578543, guid: fdbc521dddbf44e96945d773e21c0e89, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1675997347}
     - targetCorrespondingSourceObject: {fileID: 1395825571184578543, guid: fdbc521dddbf44e96945d773e21c0e89, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1675997345}
@@ -1817,6 +1965,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8284464032309556264, guid: 812def50e4e774595825c0099f42aa64, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1496644822}
+    - targetCorrespondingSourceObject: {fileID: 8284464032309556264, guid: 812def50e4e774595825c0099f42aa64, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1496644825}
+    - targetCorrespondingSourceObject: {fileID: 8284464032309556264, guid: 812def50e4e774595825c0099f42aa64, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1496644824}
     - targetCorrespondingSourceObject: {fileID: 8284464032309556264, guid: 812def50e4e774595825c0099f42aa64, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1496644821}

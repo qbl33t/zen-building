@@ -13,13 +13,32 @@ namespace UI {
 			_textMesh = GetComponent<TextMeshProUGUI>();
 		}
 
-		public void OnEventGameState(Component component, object data) {
+		public void OnEventGameStart(Component component, object data) {
+			if (data is GameState state) {
+				UpdateText("Start", state);
+			}
+		}
+
+		public void OnEventGameRestart(Component component, object data) {
+			if (data is GameState state) {
+				UpdateText("Restart", state);
+			}
+		}
+
+		public void OnEventGameUpdate(Component component, object data) {
 			// TODO: this if should be removed and changed  
 			if (data is GameState state) {
-				_textMesh.text = _header;
-				_textMesh.text +=
-					$"MaxHeight: {state.MaxHeight}\n Height: {state.ReachedHeight}\n Speed: {state.Speed}\n Mass: {state.CubeMass} ";
+				UpdateText("Update", state);
 			}
+		}
+
+		//
+		// Private helpers
+		//
+		private void UpdateText(string prefix, GameState state) {
+			_textMesh.text = $"{_header}: {prefix}\n";
+			_textMesh.text +=
+				$"MaxHeight: {state.MaxHeight}\n Height: {state.ReachedHeight}\n Speed: {state.Speed}\n Mass: {state.CubeMass} ";
 		}
 	}
 }

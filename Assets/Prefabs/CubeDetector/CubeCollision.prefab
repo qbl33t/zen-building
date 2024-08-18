@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bfe45d777c7c462eb87ef999883fb76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialCollision: {fileID: 2100000, guid: d76d5dba59c8a824a8170635648a356c, type: 2}
+  materialCollision: {fileID: 2100000, guid: 5e88a93148f69984e968ecc92408960f, type: 2}
 --- !u!114 &-5558144681207213985
 MonoBehaviour:
   m_ObjectHideFlags: 0

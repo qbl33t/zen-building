@@ -17,10 +17,12 @@ namespace GameEngine {
 		// [SerializeField] public GameObject cubeSpawner;
 
 		[Header("Events 2 Send")]
-		public GameEvent eventKeyDownSpace;
+		public GameEvent eventSpawnCube;
 
-		public GameEvent eventGameState;
+		public GameEvent eventGameStart;
+		public GameEvent eventGameUpdate;
 		public GameEvent eventGameRestart;
+		public GameEvent eventGameNextLevel;
 
 		// Base init of the first GameState
 		private static readonly GameState GAME_STATE_INIT = new(
@@ -31,49 +33,63 @@ namespace GameEngine {
 			reachedHeight: 1
 		);
 
+		// list of all new cubes spawned by player
 		private readonly List<GameObject> _cubeTower = new();
 
 		// Current game state of the game
 		private GameState _gameState;
 
-		private void OnEnable() {
+		private void Awake() {
 			_gameState = GAME_STATE_INIT;
+			_gameState.FirstCube = cubeStart;
 		}
 
 		private void Start() {
 			// Pass current event state
-			eventGameState.EmitEvent(this, _gameState);
+			eventGameStart.EmitEvent(this, _gameState);
 		}
 
 		private void Update() {
 			if (Input.GetKeyDown(KeyCode.Space)) {
-				eventKeyDownSpace.EmitEvent(this, null);
+				eventSpawnCube.EmitEvent(this, null);
+			} else if (Input.GetKeyDown(KeyCode.R)) {
+				ProceedRestartLevel();
 			}
 		}
 
 		private void ProceedNextLevel() {
+			Debug.Log("[GameEngine] ProceedNextLevel");
 			// calculate GameState for next level
 			_gameState = GameStateLogic.NextGameState(_gameState);
 
+			Debug.Log("[GameEngine] Emitting event GameNextLevel");
+			eventGameNextLevel.EmitEvent(this, _gameState);
+			ResetScene();
+		}
+
+		private void ProceedRestartLevel() {
+			// reset game state just by reached height
+			_gameState.ReachedHeight = 1;
+			eventGameRestart.EmitEvent(this, _gameState);
+			ResetScene();
+		}
+
+		private void ResetScene() {
 			// init transition for the next level
 			// 0. play transition between levels
 
 			// 1. destroy all cubes + spawn first one (this could stay)
 			_cubeTower.ForEach(cube => cube.Destroy());
-			// 1.1 update CubeDetector
-			eventGameRestart.EmitEvent(this, _gameState);
+			_cubeTower.Clear();
+
+			// move to first cube
 			MoveCameraAt(cubeStart);
-
-			// 2. reset UI
-			eventGameState.EmitEvent(this, _gameState);
-
-			// 
 		}
 
 		//
 		// Events
 		//
-		public void OnEventNewCubeSpawn(Component sender, object data) {
+		public void OnEventNewCube(Component sender, object data) {
 			if (data is GameObject newCubeGameObject) {
 				_cubeTower.Add(newCubeGameObject);
 
@@ -108,7 +124,7 @@ namespace GameEngine {
 					ProceedNextLevel();
 				} else {
 					// emit event
-					eventGameState.EmitEvent(this, _gameState);
+					eventGameUpdate.EmitEvent(this, _gameState);
 				}
 			}
 		}

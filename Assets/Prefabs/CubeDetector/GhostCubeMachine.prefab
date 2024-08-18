@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5265916196870723163}
   - component: {fileID: 8800943922963481473}
   m_Layer: 0
-  m_Name: CubeDetector
+  m_Name: GhostCubeMachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5265916196870723163}
         m_TargetAssemblyTypeName: Logic.CubeDetectorLogic, Assembly-CSharp
-        m_MethodName: OnEventNewCubeSpawn
+        m_MethodName: OnEventSpawnCube
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

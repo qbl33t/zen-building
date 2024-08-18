@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Data.Structure {
 	public struct GameState {
 		// Game definition of the level
@@ -13,12 +15,15 @@ namespace Data.Structure {
 		// Current player reached height
 		public int ReachedHeight { get; set; }
 
+		public GameObject FirstCube { get; set; }
+
 		public GameState(int currentLevel, int maxHeight, float speed, float cubeMass, int reachedHeight) {
 			CurrentLevel = currentLevel;
 			MaxHeight = maxHeight;
 			Speed = speed;
 			CubeMass = cubeMass;
 			ReachedHeight = reachedHeight;
+			FirstCube = null;
 		}
 	}
 }
